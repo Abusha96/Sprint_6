@@ -1,10 +1,5 @@
 import pytest
 from selenium import webdriver
-from selenium.webdriver.firefox.options import Options
-from selenium.webdriver.support.wait import WebDriverWait
-
-import pytest
-from selenium import webdriver
 from selenium.webdriver.support.ui import WebDriverWait
 
 
@@ -14,6 +9,7 @@ def driver():
     driver.maximize_window()
     yield driver
     driver.quit()
+
 
 @pytest.fixture(scope='class')
 def wait(driver):

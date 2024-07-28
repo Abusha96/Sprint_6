@@ -1,10 +1,10 @@
+import allure
 import pytest
 from pages.main_page import MainPage
-from pages.base_page import BasePage
 from locators.faq_on_main_page_locators import FAQ
 
 
-class TestQuestions(FAQ):
+class TestQuestions():
     @pytest.mark.parametrize('question, answer, expected_text',
                              [
         [FAQ.QUESTION_1, FAQ.ANSWER_1, 'Сутки — 400 рублей. Оплата курьеру — наличными или картой.'],
@@ -17,9 +17,10 @@ class TestQuestions(FAQ):
         [FAQ.QUESTION_8, FAQ.ANSWER_8, 'Да, обязательно. Всем самокатов! И Москве, и Московской области.']
                                  ]
                              )
+    @allure.title('Корректное отображение ответов на вопросы')
     def test_answer_text(self, driver, wait, question, answer, expected_text):
-        base_page = BasePage(driver, wait)
-        base_page.open_url(MainPage.BASE_URL)
-        base_page.scroll_to_element(FAQ.QUESTION_8)
-        base_page.click_element(question)
-        assert base_page.check_text(answer) == expected_text
+        main_page = MainPage(driver, wait)
+        main_page.open_main_page()
+        main_page.scroll_to_question(question)
+        main_page.click_on_question(question)
+        assert main_page.get_answer(answer) == expected_text

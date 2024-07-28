@@ -1,7 +1,6 @@
 from selenium.webdriver.common.by import By
 
 
-# Вопросы о важном
 class FAQ():
     QUESTION_1 = By.XPATH, '//*[@id="accordion__heading-0"]'
     QUESTION_2 = By.XPATH, '//*[@id="accordion__heading-1"]'
